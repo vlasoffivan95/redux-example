@@ -3,7 +3,7 @@ import CONSTANTS from "../../constants";
 
 const { LANGUAGE } = CONSTANTS;
 
-const initialState = LANGUAGE.UA_UA;
+const initialState = LANGUAGE.UA_UA.VALUE;
 
 const langSlice = createSlice({
   name: "lang",
@@ -12,7 +12,7 @@ const langSlice = createSlice({
     setLanguage: (state, action) => action.payload,
   },
 });
-const { reducer, actions } = langSlice;
+const { reducer, actions } = langSlice; 
 const { setLanguage } = actions;
 
 export default reducer;

@@ -10,7 +10,7 @@ const {
 
 const translations = new Map([
   [
-    EN_US,
+    EN_US.VALUE,
     {
       countText: "Count",
       stepText: "Step",
@@ -20,7 +20,7 @@ const translations = new Map([
     },
   ],
   [
-    UA_UA,
+    UA_UA.VALUE,
     {
       countText: "Рахунок",
       stepText: "Крок",
@@ -44,8 +44,8 @@ const Counter = (props) => {
         value={language}
         onChange={({ target: { value } }) => setLanguage(value)}
       >
-        <option value = {EN_US}>English</option>
-        <option value = {UA_UA}>Ukrainian</option>
+        <option value = {EN_US.VALUE}>English</option>
+        <option value = {UA_UA.VALUE}>Ukrainian</option>
       </select>
       <p>
         {countText}: {count}
