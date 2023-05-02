@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "@reduxjs/toolkit";
 import { increment, decrement, setStep } from "../../store/slices/counterSlice";
 
 const Counter = (props) => {
