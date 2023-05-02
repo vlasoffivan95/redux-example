@@ -26,4 +26,4 @@ const { reducer, actions } = counterSlice;
 const { increment, decrement, setStep } = actions;
 
 export default reducer;
-export { increment, decrement };
+export { increment, decrement, setStep };
