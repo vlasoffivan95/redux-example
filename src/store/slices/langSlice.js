@@ -3,7 +3,7 @@ import CONSTANTS from "../../constants";
 
 const { LANGUAGE } = CONSTANTS;
 
-const initialState = LANGUAGE.EN_US;
+const initialState = LANGUAGE.UA_UA;
 
 const langSlice = createSlice({
   name: "lang",
