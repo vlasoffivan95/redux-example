@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "@reduxjs/toolkit";
 import { increment, decrement, setStep } from "../../store/slices/counterSlice";
 
 const Counter = (props) => {
   console.log(props);
-  const { count, step, dispatch, incrementCb, decrementCb, setStepCb } = props;
+  const { count, step, dispatch, increment, decrement, setStep } = props;
   return (
     <div>
       <p>Count : {count}</p>
@@ -13,11 +14,11 @@ const Counter = (props) => {
         <input
           type="number"
           value={step}
-          onChange={setStepCb}
+          onChange={({ target: { value } }) => setStep(value)}
         />
       </label>
-      <button onClick={incrementCb}>Increment</button>
-      <button onClick={decrementCb}>Decrement</button>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
     </div>
   );
 };
@@ -25,15 +26,20 @@ const Counter = (props) => {
 function mapStateToProps(state) {
   return state;
 }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     incrementCb: () => dispatch(increment()),
+//     decrementCb: () => dispatch(decrement()),
+//     setStepCb: ({target:{value}})=> dispatch(setStep(value))
+//   };
+// }
+
+const mapDispatchToProps = {
+  increment,
+  decrement,
+  setStep,
+};
 const withState = connect(mapStateToProps, mapDispatchToProps);
 const CounterWithState = withState(Counter);
-
-function mapDispatchToProps(dispatch) {
-  return {
-    incrementCb: () => dispatch(increment()),
-    decrementCb: () => dispatch(decrement()),
-    setStepCb: ({target:{value}})=> dispatch(setStep(value))
-  };
-}
-
 export default CounterWithState;
