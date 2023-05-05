@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import { increment, decrement, setStep } from "../../store/slices/counterSlice";
 import { setLanguage } from "../../store/slices/langSlice";
 import CONSTANTS from "../../constants";
+import { setTheme } from "../../store/slices/themeSlice";
+import { THEMES } from "../../constants";
+import styles from './style.module.scss'
 
 const {
   LANGUAGE: { EN_US, UA_UA },
+  LANGUAGE,
 } = CONSTANTS;
 
 const translations = new Map([
@@ -31,22 +35,47 @@ const translations = new Map([
 ]);
 
 const Counter = (props) => {
-  console.log(props);
-  const { count, step, language, increment, decrement, setStep, setLanguage } =
-    props;
+  const {
+    count,
+    step,
+    language,
+    increment,
+    decrement,
+    setStep,
+    setLanguage,
+    theme,
+    setTheme,
+  } = props;
 
   const translation = translations.get(language);
   const { countText, stepText, incrementBtn, decrementBtn } = translation;
+  console.log(THEMES.THEME.WHITE);
+  console.log(theme);
+  console.log(setTheme);
 
   return (
-    <div>
+    <div className={theme===THEMES.THEME.DARK?styles.dark:styles.white}>
       <select
         value={language}
         onChange={({ target: { value } }) => setLanguage(value)}
       >
-        <option value = {EN_US.VALUE}>English</option>
-        <option value = {UA_UA.VALUE}>Ukrainian</option>
+
+        {/* <option value = {EN_US.VALUE}>English</option>
+        <option value = {UA_UA.VALUE}>Ukrainian</option> */}
+
+        {Object.values(LANGUAGE).map((langObj) => (
+          <option key={langObj.VALUE} value={langObj.VALUE}>
+            {langObj.OPTION_TEXT}
+          </option>
+        ))}
       </select>
+
+
+      <select value={theme} onChange={({target:{value}})=>  setTheme(value)}>
+          <option value={THEMES.THEME.DARK}>Dark</option>
+          <option value={THEMES.THEME.WHITE}>White</option>
+        </select>
+
       <p>
         {countText}: {count}
       </p>
@@ -70,6 +99,7 @@ function mapStateToProps(state) {
     count: state.counter.count,
     step: state.counter.step,
     language: state.lang,
+    theme: state.theme,
   };
 }
 
@@ -86,6 +116,7 @@ const mapDispatchToProps = {
   decrement,
   setStep,
   setLanguage,
+  setTheme,
 };
 // const withState = connect(mapStateToProps, mapDispatchToProps);
 // const CounterWithState = withState(Counter);

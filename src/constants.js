@@ -5,4 +5,13 @@ const CONSTANTS = {
   },
 };
 
+export const THEMES = {
+  THEME: {
+    DARK:'dark',
+    WHITE:'white'
+  }
+}
+
+
+
 export default CONSTANTS;
