@@ -12,7 +12,7 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/counter" component={Counter} exact />
+          <Route path="/" component={Counter} exact />
           <Route path="/hucpa" component={Hucpa} exact />
         </Switch>
       </BrowserRouter>

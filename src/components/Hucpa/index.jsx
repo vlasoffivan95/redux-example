@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "../Counter/style.module.scss";
-import { connect } from "react-redux";
-import { setTheme } from "../../store/slices/themeSlice";
 
 const Hucpa = ({theme, setTheme}) => {
 
@@ -41,20 +39,6 @@ const Hucpa = ({theme, setTheme}) => {
 };
 
 
-function mapStateToProps(state) {
-    console.log(state);
-    return {
-      count: state.counter.count,
-      step: state.counter.step,
-      language: state.lang,
-      theme: state.theme,
-    };
-  }
 
 
-  const mapDispatchToProps = {
-
-    setTheme,
-  };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Hucpa);
+export default Hucpa;
