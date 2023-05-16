@@ -15,15 +15,25 @@ const getUsers = createAsyncThunk(`${SLICE_NAME}/getUsers`, () => {
 const usersSlice = createSlice({
   name: SLICE_NAME,
   initialState,
-  extraReducers: {
-    [getUsers.pending]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getUsers.pending, (state, action) => {
       state.isLoading = true;
-    },
-    [getUsers.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
       state.users = action.payload;
       state.isLoading = false;
-    },
+    });
   },
+
+  //   extraReducers: {
+  //     [getUsers.pending]: (state, action) => {
+  //       state.isLoading = true;
+  //     },
+  //     [getUsers.fulfilled]: (state, action) => {
+  //       state.users = action.payload;
+  //       state.isLoading = false;
+  //     },
+  //   },
 });
 
 export { getUsers };
