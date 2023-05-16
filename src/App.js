@@ -1,21 +1,17 @@
 import "./App.css";
 import Counter from "./components/Counter";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-} from "react-router-dom/cjs/react-router-dom.min";
-import Hucpa from "./components/Hucpa";
+import NotFoundPage from "pages/NotFound";
+import HomePage from "pages/HomePage";
+import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" component={Counter} exact />
-          <Route path="/hucpa" component={Hucpa} exact />
-        </Switch>
-      </BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/counter" component={Counter} />
+        <Route path="*" component={NotFoundPage} exact />
+      </Switch>
     </>
   );
 }
