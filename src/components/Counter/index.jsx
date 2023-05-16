@@ -6,6 +6,7 @@ import CONSTANTS from "../../constants";
 import { setTheme } from "../../store/slices/themeSlice";
 import { THEMES } from "../../constants";
 import styles from './style.module.scss'
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 const {
   LANGUAGE: { EN_US, UA_UA },
@@ -52,6 +53,8 @@ const Counter = (props) => {
  const{step, count} = useSelector(state=>state.counter)
  const dispatch = useDispatch()
 
+
+
   const translation = translations.get(language);
   const { countText, stepText, incrementBtn, decrementBtn } = translation;
   console.log(THEMES.THEME.WHITE);
@@ -59,6 +62,10 @@ const Counter = (props) => {
   console.log(setTheme);
   const setLang = (newLang) => dispatch(setLanguage(newLang))
   const setNewStep = (newStep) => dispatch(setStep(newStep))
+
+  const actionCreators = bindActionCreators(
+    {setLang, setStep, increment, decrement}, dispatch
+   )
 
   return (
     <div className={theme===THEMES.THEME.DARK?styles.dark:styles.white}>
@@ -78,7 +85,7 @@ const Counter = (props) => {
       </select>
 
 
-      <select value={theme} onChange={({target:{value}})=>  setTheme(value)}>
+      <select value={theme} onChange={({target:{value}})=>  dispatch(setTheme(value))}>
           <option value={THEMES.THEME.DARK}>Dark</option>
           <option value={THEMES.THEME.WHITE}>White</option>
         </select>
@@ -91,7 +98,7 @@ const Counter = (props) => {
         <input
           type="number"
           value={step}
-          onChange={({ target: { value } }) => setNewStep(value)}
+          onChange={({ target: { value } }) => actionCreators.setStep(value)}
         />
       </label>
       <button onClick={() => dispatch(increment())}>{incrementBtn}</button>
