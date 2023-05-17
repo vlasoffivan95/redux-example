@@ -6,9 +6,6 @@ import axios from "axios";
 //   return users;
 // }
 
-export async function getUsers() {
-  const { data: users } = await axios.get(
-    'https://jsonplaceholder.typicode.com/users'
-  );
-  return users;
-}
+export const getUsers = async () => {
+  return axios.get("https://jsonplaceholder.typicode.com/users");
+};
