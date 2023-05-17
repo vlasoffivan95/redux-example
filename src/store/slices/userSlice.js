@@ -8,7 +8,8 @@ const initialState = {
   error: null,
 };
 
-const getUsers = createAsyncThunk(`${SLICE_NAME}/getUsers`, () => {
+const getUsers = createAsyncThunk(`${SLICE_NAME}/getUsers`, async (arg) => {
+  console.log(`arg is ${arg}`);
   return API.getUsers();
 });
 
