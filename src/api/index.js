@@ -6,6 +6,8 @@ import axios from "axios";
 //   return users;
 // }
 
-export const getUsers = async () => {
-  return axios.get("http://127.0.0.1:5001/api/users");
-};
+export const getUsers = async () =>
+  axios.get("http://127.0.0.1:5001/api/users");
+
+export const registerUser = async (userData) =>
+  axios.post("http://127.0.0.1:5001/api/users/auth/signup", userData);
