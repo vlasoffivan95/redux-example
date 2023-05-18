@@ -7,5 +7,5 @@ import axios from "axios";
 // }
 
 export const getUsers = async () => {
-  return axios.get("https://jsonplaceholder.typicode.com/users");
+  return axios.get("http://127.0.0.1:5001/api/users");
 };

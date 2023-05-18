@@ -13,7 +13,7 @@ const getUsers = createAsyncThunk(
   async (arg, thunkApi) => {
     try {
       console.log(`arg is ${arg}`);
-      const { data: users } = await API.getUsers(arg);
+      const { data: {data:users} } = await API.getUsers(arg);
       return users;
     } catch (error) {
       console.log(error);
