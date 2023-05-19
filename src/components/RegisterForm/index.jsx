@@ -1,5 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "store/slices/authSlice";
 /*
 {
     "nickName": "Nickname",
@@ -20,9 +22,19 @@ const initialState = {
   userRole: "",
 };
 
+
+
 function RegisterForm(props) {
+  const {isLoading, error} = useSelector(state=>state.auth)
+  const dispatch = useDispatch()
+  const submitHandler = (values, formikBag) => {
+    dispatch(register(values))
+  }
   return (
-    <Formik initialValues={initialState}>
+    <>
+    {isLoading && <div>Registering Now!</div>}
+    {error && <div>{error.message}</div>}
+    <Formik initialValues={initialState} onSubmit={submitHandler}>
       <Form>
         <Field name="nickName" placeholder="nickName" />
         <Field name="firstName" placeholder="firstName" />
@@ -32,7 +44,7 @@ function RegisterForm(props) {
         <Field name="userRole" placeholder="userRole" />
         <button type="submit">Register</button>
       </Form>
-    </Formik>
+    </Formik></>
   );
 }
 
